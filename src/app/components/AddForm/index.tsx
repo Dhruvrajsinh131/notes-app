@@ -29,8 +29,6 @@ const AddhtmlForm = ({ data, setData, setShowCreateComponent }) => {
 
     setData((prev) => [respJson.data, ...prev]);
     setShowCreateComponent(false);
-
-    console.log("respJson", respJson);
   };
 
   return (

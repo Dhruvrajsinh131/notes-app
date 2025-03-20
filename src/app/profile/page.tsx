@@ -19,7 +19,6 @@ const Profile = () => {
       });
 
       const respJson = await resp.json();
-      console.log("respJson", respJson);
 
       if (respJson.success === false) {
         router.push("/login");
@@ -42,8 +41,6 @@ const Profile = () => {
     );
 
     const deleteRespJson = await deleteResp.json();
-
-    console.log("deleteResp", deleteRespJson);
 
     if (deleteRespJson.success) {
       setData(

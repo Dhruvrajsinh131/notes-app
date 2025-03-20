@@ -20,8 +20,6 @@ const Card = (props: CardDataProps) => {
   const bgStatusColor = status === "P" ? "#FFA500" : "#28A745";
 
   const updateNote = async () => {
-    console.log("content", content);
-
     try {
       const updateResp = await fetch(
         `http://localhost:9090/api/notes/update/${id}`,
@@ -34,7 +32,6 @@ const Card = (props: CardDataProps) => {
       );
 
       const updateRespJson = await updateResp.json();
-      console.log("updateRespJson", updateRespJson);
     } catch (error) {}
   };
 
