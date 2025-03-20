@@ -31,6 +31,27 @@ const Profile = () => {
     fetchProfile();
   }, []);
 
+  const deleteNoteFun = async (deleteid: string) => {
+    const deleteResp = await fetch(
+      `http://localhost:9090/api/notes/delete/${deleteid}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      }
+    );
+
+    const deleteRespJson = await deleteResp.json();
+
+    console.log("deleteResp", deleteRespJson);
+
+    if (deleteRespJson.success) {
+      setData(
+        (prevData) => prevData?.filter((val) => val._id !== deleteid) || []
+      );
+    }
+  };
+
   const logout = async () => {
     const resp = await fetch("http://localhost:9090/api/logout", {
       method: "POST",
@@ -90,7 +111,7 @@ const Profile = () => {
           </div>
         ) : (
           <div className="flex flex-wrap justify-around gap-15   mt-5 bg-slate-100 p-5 rounded-xl">
-            <List data={data} />
+            <List data={data} deleteNoteFun={deleteNoteFun} />
           </div>
         )}
       </section>
